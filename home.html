@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Weather comparator</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    
+        <!-- import CSS style classes from css inner folder -->
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        
+        <!-- avoid favicon.ico console error -->
+        <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
+    </head>
+    
+    <body>
+        <div class="container">
+            
+<!--
+            <button type="button" class="btn btn-secondary float-right font-size-12" id="authorInfo"
+                    data-toggle="popover">Author Info</button>
+            
+            <div class="row d-flex justify-content-center margin-bottom-20">
+                <div class="col-6 text-align-center">
+                    <h1>Wheather comparator</h1>
+                    </div>
+            </div>
+-->
+            <div class="row">
+                
+                <div class="col-6 offset-3 margin-bottom-20">
+                    <div class="text-align-center">
+                        <h1>Wheather comparator</h1>
+                        </div>
+                </div>
+                <div class="col-3 justify-content-end">
+                    <button type="button" class="btn btn-secondary float-right font-size-12" id="authorInfo"
+                        data-toggle="popover">Author Info</button>
+                </div>
+            </div>
+            
+            
+            <form id="weatherForm">
+                
+                <!-- Research type -->
+                <fieldset class="form-group">
+                    <div class="row align-items-center">
+
+                        <span class="col-3 font-weight-bold text-right" >Reserach method</span>
+
+<!--                        <div class="form-check form-check-inline col-5 mt-2">-->
+                        <div class="form-check form-check-inline col-9 mt-2">
+                            <label class="form-check-label active">
+                                <input type="radio" name="method" value="byCity" id="byCity" checked="">by city
+                            </label>
+                            <label class="form-check-label">
+                                <input type="radio" name="method" value="byZip" id="byZip">by zip code
+                            </label>
+                            <label class="form-check-label">
+                                <input type="radio" name="method" value="byGeo" id="byGeo">by coordinates
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+                
+                <!-- search by city -->
+                <div class="form-group row align-items-center" id="cityContainer">
+                    <label for="city" class="col-3 col-form-label font-weight-bold text-right" >City</label>
+                    <div class="col-6 d-flex justify-content-start">
+                        <input class="form-control" type="text" id="city"
+                               placeholder="'Rome', 'Innsbruck'..">
+                    </div>
+                </div>
+                                
+                <!-- search by zip code -->
+                <div class="form-group row display-none align-items-center" id="zipCodeContainer" >
+                    <label for="country" class="col-3 col-form-label font-weight-bold text-right" >Zip Code</label>
+                    <div class="col-6 d-flex justify-content-start">
+                        <input class="form-control" type="search" id="zipCode" 
+                               placeholder="35030, 37139..">
+                    </div>
+                </div>
+                
+                <!-- search by country (optional) -->
+                <div class="form-group row align-items-center" id="contryContainer">
+                    <label for="country" class="col-3 col-form-label font-weight-bold line-height-120 text-right" >Country
+                        <span class="font-size-12 font-weight-normal">(optional)</span>
+                    </label>
+                    <div class="col-6 d-flex justify-content-start">
+                        <input class="form-control form-control mb-2 mt-2" type="text" id="country" data-toggle="tooltip"
+                               placeholder="'Italy', 'IT'..">
+                    </div>
+                </div>
+                
+                <!-- search by coordinates -->
+                <div class="form-group row display-none align-items-center" id="latitudeContainer">
+                    <label for="latitude" class="col-3 col-form-label font-weight-bold text-right" >Latitude
+                        <br/><span class="font-size-12">(just grades-no decimal)</span>
+                    </label>
+                    <div class="col-6 d-flex justify-content-start">
+                        <input class="form-control" type="search" id="latitude" 
+                               placeholder="48,39,..">
+                    </div>
+                </div>
+                <div class="form-group row display-none align-items-center" id="longitudeContainer">
+                    <label for="longitude" class="col-3 col-form-label font-weight-bold text-right" >Longitude
+                        <br/><span class="font-size-12">(just grades-no decimal)</span>
+                    </label>
+                    <div class="col-6 d-flex justify-content-start">
+                        <input class="form-control" type="search" id="longitude" 
+                               placeholder="10,15,..">
+                    </div>
+                </div>     
+                
+                <!-- forecat tipe: current or forecast -->
+                <fieldset class="form-group">
+                    <div class="row align-items-center">
+                        <span class="col-3 font-weight-bold text-right">Forecast type</span>
+                        <div class="form-check form-check-inline col-9 mt-2">
+                            <!-- default is current -->
+                            <label class="form-check-label active">
+                                <input type="radio" name="currentOrForecast" value="current" checked="">Current
+                            </label>
+                            <label class="form-check-label">
+                                <input type="radio" name="currentOrForecast" value="forecast">Forecast
+                            </label>
+                        </div>
+                    </div>
+                </fieldset> 
+                
+                <!-- Unit type -->
+                <fieldset class="form-group ">
+                    <div class="row">
+                        <span class="col-3 font-weight-bold text-right" >Unit</span>
+                        <!-- default is current -->
+                        <div class="form-check form-check-inline col-9">
+                            <label class="form-check-label active">
+                                <input type="radio" name="unit" value="celsius" checked="">Celsius (°C)
+                            </label>
+                            <label class="form-check-label">
+                                <input type="radio" name="unit" value="kelvin">Kelvin (°K)
+                            </label>
+                            <label class="form-check-label">
+                                <input type="radio" name="unit" value="fahrenheit">Fahrenheit (°F)
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="row justify-content-center">
+                    <div class="col-3 text-align-center">
+                        <button type="button" class="btn btn-primary" id="search">Search</button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Error part, filled (eventually) by JS -->
+            <div class="row justify-content-center">
+                <div id="errorMessage" class="col-3 text-align-center"></div>
+            </div>
+            
+            <!-- Results part -->
+            <div class="row" id="results">
+                <!-- OWM -->
+                <div class="col">
+                    <div id="resultTableOWM"></div>    <!-- filled by JS after form submit -->
+                </div>
+                <!-- APIXU -->
+                <div class="col">
+                    <div id="resultTableApixu"></div>    <!-- filled by JS after form submit -->
+                </div>
+                <!-- WEATHER BIT -->
+                <div class="col">
+                    <div id="resultTableWeatherBit"></div>    <!-- filled by JS after form submit -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- jQuery first, then Tether, then Bootstrap JS. -->
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous">
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous">
+        </script>
+        
+        <!-- main JS application -->
+        <script type="text/javascript" src="js/main.js"></script>
+        <!-- OpenWeatherMaps.org -->
+        <script type="text/javascript" src="js/openWeatherMap.js"></script> 
+        <!-- Apixu.com -->
+        <script type="text/javascript" src="js/apixu.js"></script> 
+        <!-- WeatherBit.io.com -->
+        <script type="text/javascript" src="js/weatherBit.js"></script> 
+        
+    </body>
+</html>

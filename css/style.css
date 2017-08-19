@@ -1,0 +1,96 @@
+/* one single background image, not repeted, cross browser and device */
+html { 
+  background: url(../img/background.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+/* necessary because put on the html tag */
+body {
+    background: none;
+}
+
+.container {
+/*    text-align: center;*/
+    margin-top: 30px;
+}
+
+#results {
+    display: none;                  /* initially hidden, then make visibled after click by JS */
+    margin-top: 20px;
+}
+
+
+#resultTableOWM, #resultTableApixu, #resultTableWeatherBit{
+    background-color: #FFFFFF;      /* white */
+}
+
+/* center the content, default is left */
+.table thead th {
+    text-align: center;
+}
+
+/* remove some padding (original BS is 0.7rem) */
+.table td, .table th {
+    padding: 0.2rem;
+}
+/* vertically alignment for date */
+.table td, .table th > .vertical-align-middle {
+    vertical-align: middle;
+}
+
+/* icon image responded by API */
+#weatherIcon {
+    width: 30px;
+    height: 30px;
+}
+
+/* space between Search button and results */
+#weatherForm {
+    margin-bottom: 30px;
+}
+
+/* result tables' headings */
+caption {
+    font-size: 30px;
+    font-weight: bold;
+    caption-side: top;
+    text-align: center;
+}
+
+/******************/
+/* helper classes */
+/******************/
+/*
+.width-400-px {
+    width: 400px;
+}
+*/
+.margin-bottom-20 {
+    margin-bottom: 20px;
+}
+.font-size-12 {
+    font-size: 12px;
+}
+.display-none {
+    display: none;
+}
+.font-weight-bold {
+    font-weight: bold;
+}
+.margin-10 {
+    margin: 10px 0;
+}
+.line-height-120 {
+    line-height: 120%;
+}
+.font-weight-normal {
+    font-weight: normal;
+}
+.text-align-right {
+    text-align: right;
+}
+.text-align-center {
+    text-align: center;
+}
